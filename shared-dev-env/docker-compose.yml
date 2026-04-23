@@ -1,4 +1,4 @@
-name: CARPI Shared Development Environment
+name: carpi-shared-dev-environment
 
 services:
   db:
