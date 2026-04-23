@@ -15,7 +15,7 @@ services:
     volumes:
       - carpi-mysql-data:/var/lib/mysql
     networks:
-      - carpi-test-network
+      - carpi-dev-network
     healthcheck:
       test:
         [
@@ -36,6 +36,6 @@ volumes:
   carpi-mysql-data:
 
 networks:
-  carpi-test-network:
-    name: carpi-test-network
+  carpi-dev-network:
+    name: carpi-dev-network
     driver: bridge
