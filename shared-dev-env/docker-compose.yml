@@ -1,0 +1,41 @@
+name: CARPI Shared Development Environment
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: carpi-test-mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_SCHEMA}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - carpi-mysql-data:/var/lib/mysql
+    networks:
+      - carpi-test-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "127.0.0.1",
+          "-u",
+          "${DB_USERNAME}",
+          "--password=${DB_PASSWORD}",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  carpi-mysql-data:
+
+networks:
+  carpi-test-network:
+    name: carpi-test-network
+    driver: bridge
