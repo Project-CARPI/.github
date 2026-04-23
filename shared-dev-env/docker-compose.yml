@@ -34,6 +34,7 @@ services:
 
 volumes:
   carpi-mysql-data:
+    name: carpi-mysql-data
 
 networks:
   carpi-dev-network:
