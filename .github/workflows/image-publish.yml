@@ -1,6 +1,6 @@
 name: Build and Push Docker Image to GHCR
 
-# Run this workflow every time code is pushed or merged to the main branch
+# Run this workflow when called by another workflow
 on:
   workflow_call:
     # Allow the caller to optionally customize the image name or tags

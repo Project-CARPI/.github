@@ -1,0 +1,32 @@
+name: Black Formatting Check
+
+# Run this workflow when called by another workflow
+on:
+  workflow_call:
+    # Allow the caller to optionally customize the Python version
+    inputs:
+      python_version:
+        required: false
+        type: string
+        default: "3.12"
+
+jobs:
+  format-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout respository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ inputs.python_version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install black
+
+      - name: Run Black check
+        run: black --check .
