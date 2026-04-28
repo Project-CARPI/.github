@@ -3,8 +3,9 @@ name: carpi-shared-dev-environment
 services:
   db:
     image: mysql:8.0
-    container_name: carpi-test-mysql-db
+    container_name: carpi-mysql-test-db
     restart: always
+    # Ensure DB_USERNAME is not set to "root"; it will cause the healthcheck to fail
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_SCHEMA}
